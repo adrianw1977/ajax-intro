@@ -1,0 +1,54 @@
+<html>
+   <head>
+       <title>Contact Card</title>
+       <link rel="stylesheet" type="text/css" href="style.css">
+<!--        <script type="text/javascript" src='http://code.jquery.com/jquery-1.10.2.min.js'></script> -->
+       <script type="text/javascript" src="../jquery/jquery-3.0.0.min.js"></script>
+       <script type="text/javascript"> 
+
+$(document).ready(function(){
+  $('form').submit(function(){
+    // $('#right').append(weather);
+    var city = $('select').val();
+    console.log(city);
+    var cityName = city;
+    var url = "http://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&APPID=97d2f931384b1367d91e1f32c87572ee";
+    var temp=url.main;
+    console.log(url);
+    $.get(url, function (res) {
+      // RESPONSE_FROM_WEATHER = res;
+      console.log(res);
+      // alert(res.weather[0].main);
+      weather= (res.weather[0].description);
+      temperature= (res.main.temp);
+      sunrise = (res.sys.sunrise);
+      console.log(weather);
+      console.log(temperature);
+      $('#right').append('weather'+ weather + ' '+ 'temperature'+ temperature);
+
+      console.log(sunrise);
+      // $('#right').append('waether'+ sys + ' '+ 'temperature'+ temperature);
+
+
+    });
+    return false;
+  }); 
+});
+</script>
+
+
+<div id="left">
+  <form>
+    <select> 
+    <option value="Seattle"> Seattle </option>
+    <option value="Portland"> Portland</option>
+    </select>
+    <input type="submit" value="Add User"> 
+  </form>
+</div>
+
+<div id="right">
+</div>
+
+
+</html>             
